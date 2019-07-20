@@ -1,7 +1,6 @@
 package data_model;
 
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class Person {
 
@@ -19,7 +18,7 @@ public class Person {
 
     private String phone;
 
-    private List<Weapon> weapons;
+    private Set<Weapon> weapons;
 
     private List<Visit> visits;
 
@@ -28,6 +27,26 @@ public class Person {
     private boolean isCompetitor;
 
     private boolean examOk;
+
+    private Set<ShootingRange> authorizedShootingRanges;
+
+    public Person(final String nameParam, final String firstNameParam, final Sex sexParam, final Date birthParam) {
+
+        name = nameParam;
+        firstName = firstNameParam;
+        sex = sexParam;
+        birth = birthParam;
+        address = "";
+        mail = "";
+        phone = "";
+        weapons = new HashSet<>();
+        visits = new ArrayList<>();
+        licence = null;
+        isCompetitor = false;
+        examOk = false;
+        authorizedShootingRanges = new HashSet<>();
+
+    }
 
     public Date getBirth() {
         return birth;
@@ -85,20 +104,12 @@ public class Person {
         this.phone = phone;
     }
 
-    public List<Weapon> getWeapons() {
+    public Set<Weapon> getWeapons() {
         return weapons;
-    }
-
-    public void setWeapons(List<Weapon> weapons) {
-        this.weapons = weapons;
     }
 
     public List<Visit> getVisits() {
         return visits;
-    }
-
-    public void setVisits(List<Visit> visits) {
-        this.visits = visits;
     }
 
     public Licence getLicence() {
@@ -123,5 +134,9 @@ public class Person {
 
     public void setExamOk(boolean examOk) {
         this.examOk = examOk;
+    }
+
+    public Set<ShootingRange> getAuthorizedShootingRanges() {
+        return  authorizedShootingRanges;
     }
 }

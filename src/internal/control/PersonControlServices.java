@@ -1,18 +1,55 @@
 package internal.control;
 
-import data_model.Person;
-import data_model.Weapon;
-import data_model.WeaponType;
+import data_model.*;
 
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class PersonControlServices {
 
-    public PersonControlServices() {
+    private LicenceControlServices licenceControlServices;
 
+    public PersonControlServices(final LicenceControlServices licenceControlServicesParam) {
+
+        licenceControlServices = licenceControlServicesParam;
+
+    }
+
+    public void removeWeapon(final Person person, final Weapon weapon) {
+        person.getWeapons().remove(weapon);
+    }
+
+    public void addWeapon(final Person person, final Weapon weapon) {
+        person.getWeapons().add(weapon);
+    }
+
+    public void removeVisit(final Person person, final Visit visit) {
+        person.getVisits().remove(visit);
+    }
+
+    public void addVisit(final Person person, final Visit visit) {
+        person.getVisits().add(visit);
+    }
+
+    public void createVisit(final Person person, final Date beginDateParam, final ShootingRange shootingRangeParam) {
+
+        // Create visit to add (end date must be add only when shooter leave the place)
+        final Visit visit = new Visit();
+        visit.setBegin(beginDateParam);
+        visit.setShootingRange(shootingRangeParam);
+
+        // Adding visit to given person if it's possible
+        if (this.isAuthorizedInShootingRange(person, shootingRangeParam)) {
+            person.getVisits().add(visit);
+        } else {
+            // TODO throw an exception
+        }
+
+    }
+
+    public boolean isAuthorizedInShootingRange(final Person person, final ShootingRange shootingRange) {
+        return licenceControlServices.isValid(person.getLicence()) && person.getAuthorizedShootingRanges().contains(shootingRange);
     }
 
     public int getAge(final Person person) {

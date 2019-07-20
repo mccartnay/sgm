@@ -30,7 +30,7 @@ public class Weapon {
         this.id = id;
     }
 
-    public Date getLestRev() {
+    public Date getLastRev() {
         return lestRev;
     }
 

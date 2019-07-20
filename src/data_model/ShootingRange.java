@@ -1,6 +1,7 @@
 package data_model;
 
 public enum ShootingRange {
+    VISITOR,
 
     TEN_METERS,
 

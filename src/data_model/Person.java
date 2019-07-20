@@ -28,22 +28,15 @@ public class Person {
 
     private boolean examOk;
 
+    /**
+     * This set contains all shooting range authorized for this person
+     */
     private Set<ShootingRange> authorizedShootingRanges;
 
-    public Person(final String nameParam, final String firstNameParam, final Sex sexParam, final Date birthParam) {
+    public Person() {
 
-        name = nameParam;
-        firstName = firstNameParam;
-        sex = sexParam;
-        birth = birthParam;
-        address = "";
-        mail = "";
-        phone = "";
         weapons = new HashSet<>();
         visits = new ArrayList<>();
-        licence = null;
-        isCompetitor = false;
-        examOk = false;
         authorizedShootingRanges = new HashSet<>();
 
     }
